@@ -64,29 +64,33 @@
         </extensions>
     </build>
 
-    <repositories>
-        <repository>
-            <id>nexus-snapshot</id>
-            <url>http://localhost:8081/repository/nexus-snapshot/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>nexus-release</id>
-            <url>http://localhost:8081/repository/nexus-release/</url>
-        </repository>
-    </repositories>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>nexus-snapshot</id>
-            <url>http://localhost:8081/repository/nexus-snapshot/</url>
-        </snapshotRepository>
-        <repository>
-            <id>nexus-release</id>
-            <url>http://localhost:8081/repository/nexus-release/</url>
-        </repository>
-    </distributionManagement>
+    <profiles>
+        <profile>
+            <id>packagecloud</id>
+            <distributionManagement>
+                <repository>
+                    <id>packagecloud.releases</id>
+                    <url>packagecloud+https://packagecloud.io/Bayvao/release</url>
+                </repository>
+                <snapshotRepository>
+                    <id>packagecloud.snapshots</id>
+                    <url>packagecloud+https://packagecloud.io/Bayvao/snapshot</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <id>nexus_distro</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>nexus-snapshot</id>
+                    <url>http://localhost:8081/repository/nexus-snapshot/</url>
+                </snapshotRepository>
+                <repository>
+                    <id>nexus-release</id>
+                    <url>http://localhost:8081/repository/nexus-release/</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+    </profiles>
 
 </project>

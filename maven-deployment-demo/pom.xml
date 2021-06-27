@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.deploy.demo</groupId>
     <artifactId>maven-deployment-demo</artifactId>
-    <version>1.0.2.RELEASE</version>
+    <version>1.2.0.RELEASE</version>
     <name>maven-deployment-demo</name>
     <description>Demo project for Spring Boot</description>
     <properties>
@@ -64,15 +64,29 @@
         </extensions>
     </build>
 
-    <distributionManagement>
+    <repositories>
         <repository>
-            <id>packagecloud.releases</id>
-            <url>packagecloud+https://packagecloud.io/Bayvao/release</url>
+            <id>nexus-snapshot</id>
+            <url>http://localhost:8081/repository/nexus-snapshot/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
+        <repository>
+            <id>nexus-release</id>
+            <url>http://localhost:8081/repository/nexus-release/</url>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
         <snapshotRepository>
-            <id>packagecloud.snapshots</id>
-            <url>packagecloud+https://packagecloud.io/Bayvao/snapshot</url>
+            <id>nexus-snapshot</id>
+            <url>http://localhost:8081/repository/nexus-snapshot/</url>
         </snapshotRepository>
+        <repository>
+            <id>nexus-release</id>
+            <url>http://localhost:8081/repository/nexus-release/</url>
+        </repository>
     </distributionManagement>
 
 </project>
